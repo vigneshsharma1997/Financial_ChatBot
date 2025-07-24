@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
-import unstructured.partition
-from unstructured.partition.pdf import partition_pdf
-from unstructured.staging.base import dict_to_elements , elements_to_json
+# import unstructured.partition
+# from unstructured.partition.pdf import partition_pdf
+# from unstructured.staging.base import dict_to_elements , elements_to_json
+import pdfplumber
 
 from utils.config import allowed_extentions
 class DocumentExtractor(object):
@@ -11,9 +12,16 @@ class DocumentExtractor(object):
     """
     def __init__(self,input_files:list[Path],output_dir:str):
         self.input_files = input_files
+        # self.files = list(
+        #     filter(
+        #         lambda fn : Path(fn.filename).suffix in allowed_extentions,input_files
+        #     )
+        # )
+        print("Input files",input_files)
         self.files = list(
             filter(
-                lambda fn : Path(fn.filename).suffix in allowed_extentions,input_files
+                lambda fn: fn.suffix in allowed_extentions,
+                input_files
             )
         )
         self.n_files = len(self.files)
@@ -23,10 +31,27 @@ class DocumentExtractor(object):
         print(f"Document_Extractor initialized with {self.n_files} files.")
 
     def partition_file(self,filename):
-        elements = partition_pdf(filename)
-        ele_dict = [el.to_dict() for el in elements]
-        output_json = json.dumps(ele_dict, indent=2)
-
+        extracted_elements = []
+        print("=======================",filename)
+        with pdfplumber.open(filename) as pdf:
+            for i,page in enumerate(pdf.pages,start=1):
+                text = page.extract_text()
+                print(f"Text Extracted from file {page} : {text}")
+                tables = page.extract_tables()
+                if text:
+                    extracted_elements.append({
+                        "type":"page_text",
+                        "page_number":i,
+                        "content":text.strip()
+                    })
+                if tables:
+                        for table in tables:
+                            extracted_elements.append({
+                                "type": "table",
+                                "page_number": i,
+                                "content": table
+                            })
+        output_json = json.dumps(extracted_elements, indent=2, ensure_ascii=False)
         # Save to JSON
         output_file = self.output_dir / f"{filename.stem}.json"
         with open(output_file, "w", encoding="utf-8") as f:
@@ -34,6 +59,19 @@ class DocumentExtractor(object):
 
         print(f"Saved extracted content to: {output_file}")
         return output_file
+    
+    # def partition_file(self,filename):
+    #     elements = partition_pdf(filename)
+    #     ele_dict = [el.to_dict() for el in elements]
+    #     output_json = json.dumps(ele_dict, indent=2)
+
+    #     # Save to JSON
+    #     output_file = self.output_dir / f"{filename.stem}.json"
+    #     with open(output_file, "w", encoding="utf-8") as f:
+    #         f.write(output_json)
+
+    #     print(f"Saved extracted content to: {output_file}")
+    #     return output_file
     
     def run(self) -> list[Path]:
         """
@@ -66,3 +104,5 @@ def run_data_extraction(input_files : list[str],extraction_dir:str) -> list:
     doc_extractor = DocumentExtractor(input_files,extraction_dir)
     json_files = doc_extractor.run()
     return json_files
+
+# run_data_extraction()

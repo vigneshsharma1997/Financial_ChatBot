@@ -13,10 +13,10 @@ def process_document_upload(payload:Dict[str,Any]) -> Dict[str,Any]:
         print("Starting Data Extraction")
         pipeline = DocumentPipeline()
         pipeline.run(
-            extract_files = document_pipeline_config.extracting_on,
-            process_files = document_pipeline_config.processing_on,
-            embed_files = document_pipeline_config.embedding_on,
-            upsert_files = document_pipeline_config.upserting_on
+            extract_files = document_pipeline_config['extracting_on'],
+            process_files = document_pipeline_config['processing_on'],
+            embed_files = document_pipeline_config['embedding_on'],
+            upsert_files = document_pipeline_config['upserting_on']
         )
         return payload
     except Exception as e:
