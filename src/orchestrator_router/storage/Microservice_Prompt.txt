@@ -1,0 +1,15 @@
+{ 
+    "KPI_Insight":{ 
+        "url":"http://localhost:8000/kpi_insight/chat_generation/run", 
+        "service_name":"KPI_Insight", 
+        "description":"KPI_Insight agent is used to generate sql queries to retrieve answer from structured tables. As this is a structural search, it questions usually asks for analysis detail,plot creations,KPI definitons for different factories.It will ask direct Question on KPI and its value for a factory. Like 'What is the VOH for Nusa Factory','What is z based loss for GCK factory?'", 
+        "prompt_path":"" 
+    }, 
+    "KPI_RCA":{ 
+        "url":"http://localhost:8000/kpi_rca/chat_generation/run", 
+        "service_name":"KPI_RCA", 
+        "description":"KPI_RCA agent is used to generate sql queries to retrieve answer from structured tables. As this is a structural search, ut quesrions usually asks for analysis detail,plot creations,KPI drivers for different factories. This will be called when user asks 'WHY' and 'HOW' KPI was changed for the period. Due to some KPI driver impacted the change in KPI. for Example : KPI : Variable OverHead --> Drivers ->Energy rate hikes,Overtime ,hours ,Usage of consumables per unit ", 
+        "prompt_path":"" 
+    } 
+ 
+} 

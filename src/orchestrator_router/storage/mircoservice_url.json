@@ -1,0 +1,10 @@
+{
+  "KPI_Insight": {
+    "url": "http://localhost:8000/kpi_insight/chat_generation/run",
+    "description": "Used to answer direct KPI questions"
+  },
+  "KPI_RCA": {
+    "url": "http://localhost:8000/kpi_rca/chat_generation/run",
+    "description": "Used to explain why KPIs changed"
+  }
+}

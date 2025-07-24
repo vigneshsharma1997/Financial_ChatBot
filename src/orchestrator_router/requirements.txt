@@ -1,0 +1,5 @@
+httpx 
+mysql-connector-python 
+langchain_core
+fastapi 
+uvicorn 
