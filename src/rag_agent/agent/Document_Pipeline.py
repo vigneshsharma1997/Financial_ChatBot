@@ -9,12 +9,17 @@ class DocumentPipeline:
     def __init__(self):
         self.folders = folders.copy()
     
-    def get_folder_files(self,folder)->list[Path]:
-        folder_path = Path(self.folders.get(folder, ""))
+    # def get_folder_files(self,folder)->list[Path]:
+    #     folder_path = Path(self.folders.get(folder, ""))
+    #     if not folder_path.exists() or not folder_path.is_dir():
+    #         return []
+    #     return [f for f in folder_path.iterdir() if f.is_file()]
+    def get_folder_files(self, folder_path: str) -> list[Path]:
+        folder_path = Path(folder_path)
         if not folder_path.exists() or not folder_path.is_dir():
             return []
         return [f for f in folder_path.iterdir() if f.is_file()]
-    
+
     def run(self,extract_files:Optional[bool],process_files:Optional[bool],embed_files:Optional[bool],upsert_files:Optional[bool]):
         """
             Runs the document processing piepline using defined configuration.
@@ -30,6 +35,7 @@ class DocumentPipeline:
                 None this method does not return any value. It executes each stage of the pipeline as configured.
         """
         fns_input = self.get_folder_files(self.folders['input'])
+        print("Input Folder Name:",fns_input)
         if extract_files:
             print(f"{len(fns_input)} files are ready for extraction.")
             fns_extracted = run_data_extraction(fns_input,self.folders['extracted'])
