@@ -42,7 +42,11 @@ class DocumentPipeline:
         if process_files:
             if not extract_files:
                 fns_extracted = self.get_folder_files(self.folders['extracted'])
-                print(f"{len(fns_extracted)} files are ready for extraction.")
-                fns_processed = run_data_processing(fns_extracted,self.folders['processed'])
-
+            print(f"{len(fns_extracted)} files are ready for processing.")
+            fns_processed = run_data_processing(fns_extracted,self.folders['processed'])
+        # if embed_files:
+        #     if not process_files:
+        #         fns_processed = self.get_folder_files(self.folders['processed'])
+        #     print(f"{len(fns_processed)} files are ready for embeddings")
+            
 

@@ -32,11 +32,11 @@ class DocumentExtractor(object):
 
     def partition_file(self,filename):
         extracted_elements = []
-        print("=======================",filename)
+        # print("=======================",filename)
         with pdfplumber.open(filename) as pdf:
             for i,page in enumerate(pdf.pages,start=1):
                 text = page.extract_text()
-                print(f"Text Extracted from file {page} : {text}")
+                # print(f"Text Extracted from file {page} : {text}")
                 tables = page.extract_tables()
                 if text:
                     extracted_elements.append({
@@ -81,7 +81,7 @@ class DocumentExtractor(object):
         Return :
              list of dict : A list of dictionaries containing metadata and content for each processed file.
         """
-        print(f"Extracting {self.n_files} files...")
+        # print(f"Extracting {self.n_files} files...")
         for file in self.files:
             result = self.partition_file(file)
             self.extracted_files.append(result)

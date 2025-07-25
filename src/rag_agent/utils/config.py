@@ -15,3 +15,14 @@ folders = {
 }
 
 allowed_extentions = ['.pdf', '.txt', '.csv', '.docx']
+
+processor_config = {
+    "chunk_method":"page_number",
+    "type_lowercase_match" : ['listitem','image','table','title','compositeelement'],
+    "type_word_within":['text'],
+    "type_table" : ['table'],
+    "type_image":['image'],
+    'clean_nltk':[],
+    'clean_llm':['image','compositeelement'],
+    'clean_llm_prompt':"Can you clean up the following text? Please only return the clean text with no headers or other informations.Some of the words may be overwritten vertically.If you can't find anything useful, please return an empty reponse. ***START TEXT***{content}***END TEXT***"
+}
