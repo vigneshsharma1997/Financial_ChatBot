@@ -3,3 +3,7 @@ uvicorn
 python-dotenv
 pandas
 mysql-connector-python
+langchain-community
+ipykernel
+pymupdf
+pytesseract

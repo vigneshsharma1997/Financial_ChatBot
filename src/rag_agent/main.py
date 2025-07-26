@@ -22,14 +22,11 @@ class QueryPayload(BaseModel):
 
 class DocumentPayload(BaseModel):
     session_id : str
-    file_name:str
 
 @app.post("/document_upload")
 async def document_upload(request:DocumentPayload):
     try:
 
-        # payload = await request.json()
-        # set_session_id(payload["session_id"])
         req = request.dict()
         print("Recieved request for document upload.")
         print("Processing document upload with payload : %s",req)

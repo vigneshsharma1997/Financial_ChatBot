@@ -17,7 +17,6 @@ class DocumentProcessor(object):
                 lambda fn:Path(fn).suffix == '.json',input_files
             )
         )
-
         self.n_files = len(self.files)
         self.output_dir = Path(output_dir)
         self.processor_config =processor_config

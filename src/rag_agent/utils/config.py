@@ -7,11 +7,11 @@ document_pipeline_config = {
 }
 
 folders = {
-    "input":"/Users/vigneshsharma/Desktop/Financial_Chatbot/Financial_ChatBot/src/rag_agent/storage",
+    "input":"storage/",
     "extracted":"intermediate/extracted",
     "processed":"intermediate/processed",
-    "embedded":"prepared",
-    "final":"prepared"
+    "embedded":"intermediate/embedded",
+    "final":"intermediate/final"
 }
 
 allowed_extentions = ['.pdf', '.txt', '.csv', '.docx']
@@ -26,3 +26,4 @@ processor_config = {
     'clean_llm':['image','compositeelement'],
     'clean_llm_prompt':"Can you clean up the following text? Please only return the clean text with no headers or other informations.Some of the words may be overwritten vertically.If you can't find anything useful, please return an empty reponse. ***START TEXT***{content}***END TEXT***"
 }
+

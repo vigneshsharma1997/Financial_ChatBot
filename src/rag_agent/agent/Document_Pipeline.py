@@ -4,6 +4,8 @@ from typing import Optional
 from utils.config import folders
 from agent.document_extraction import run_data_extraction
 from agent.document_processing import run_data_processing
+from agent.document_embedding import embed_documents_chunks
+
 
 class DocumentPipeline:
     def __init__(self):
@@ -15,6 +17,7 @@ class DocumentPipeline:
     #         return []
     #     return [f for f in folder_path.iterdir() if f.is_file()]
     def get_folder_files(self, folder_path: str) -> list[Path]:
+        print("Folder Path",folder_path)
         folder_path = Path(folder_path)
         if not folder_path.exists() or not folder_path.is_dir():
             return []
@@ -47,6 +50,7 @@ class DocumentPipeline:
         # if embed_files:
         #     if not process_files:
         #         fns_processed = self.get_folder_files(self.folders['processed'])
-        #     print(f"{len(fns_processed)} files are ready for embeddings")
+        #     print(f"{len(fns_processed)} files are ready for embedding.")
+        #     fns_embedded = embed_documents_chunks(fns_processed,self.folders['embedded'])
             
 
