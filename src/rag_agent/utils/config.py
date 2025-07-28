@@ -1,8 +1,8 @@
 AGENT_NAME="rag-agent"
 document_pipeline_config = {
-    "extracting_on" : True,
-    "processing_on" : True,
-    "embedding_on" : False,
+    "extracting_on" : False,
+    "processing_on" : False,
+    "embedding_on" : True,
     "upserting_on" : False
 }
 

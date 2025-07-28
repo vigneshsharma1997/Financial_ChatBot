@@ -38,19 +38,20 @@ class DocumentPipeline:
                 None this method does not return any value. It executes each stage of the pipeline as configured.
         """
         fns_input = self.get_folder_files(self.folders['input'])
-        print("Input Folder Name:",fns_input)
+        # print("Input Folder Name:",fns_input)
         if extract_files:
             print(f"{len(fns_input)} files are ready for extraction.")
             fns_extracted = run_data_extraction(fns_input,self.folders['extracted'])
-        if process_files:
+        # if process_files:
+        #     if not extract_files:
+        #         fns_extracted = self.get_folder_files(self.folders['extracted'])
+        #     print(f"{len(fns_extracted)} files are ready for processing.")
+        #     fns_processed = run_data_processing(fns_extracted,self.folders['processed'])
+        if embed_files:
             if not extract_files:
                 fns_extracted = self.get_folder_files(self.folders['extracted'])
-            print(f"{len(fns_extracted)} files are ready for processing.")
-            fns_processed = run_data_processing(fns_extracted,self.folders['processed'])
-        # if embed_files:
-        #     if not process_files:
-        #         fns_processed = self.get_folder_files(self.folders['processed'])
-        #     print(f"{len(fns_processed)} files are ready for embedding.")
-        #     fns_embedded = embed_documents_chunks(fns_processed,self.folders['embedded'])
+                print("Input Folder Name:",fns_extracted)
+            print(f"{len(fns_extracted)} files are ready for embedding.")
+            fns_embedded = embed_documents_chunks(fns_extracted,self.folders['embedded'])
             
 

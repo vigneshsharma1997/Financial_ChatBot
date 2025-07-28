@@ -10,7 +10,6 @@ load_dotenv()
 
 def process_document_upload(payload:Dict[str,Any]) -> Dict[str,Any]:
     try :
-        print("Starting Data Extraction")
         pipeline = DocumentPipeline()
         pipeline.run(
             extract_files = document_pipeline_config['extracting_on'],
