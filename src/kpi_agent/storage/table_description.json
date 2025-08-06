@@ -1,0 +1,4 @@
+{
+  "FFOH_KPI": "This table likely represents Fixed Factory overhead costs like Non Production related costs (Maintainence,Fixed_Labour,Fixed_Other,Fixed_Energy). This table provides detailed ffoh performance across various factories,Divisons,Cost Centers, GL Accounts. The Table includes Year Over Year Variance across various categories like - Maintainence,Fixed_Energy,Fixed_Labour etc. Also Net FFOH for Current Year(CY), Prior_Year(PY).",
+  "ZBL_KPI": "This table likely represents Z based loss shows recipe value,actual value, Z-Loss Variance, Current_Year(CY) and Prior_Year(PY) z loss percentage and YoY Variance."
+}

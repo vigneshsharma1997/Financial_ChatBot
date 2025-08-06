@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-dotenv
+pandas
+mysql-connector-python
+langchain-community
+ipykernel
+pymupdf
+pytesseract
+nomic
+langchain
+langchain_groq
+langchain_core
+langchain_community
